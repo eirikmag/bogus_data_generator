@@ -9,6 +9,7 @@
 import random
 import numpy as np
 
+
 def ssn_gen():
      # Generate birth year based on normal distribution
     mean_birth_year = 1980  # Mean birth year in Sweden
@@ -47,3 +48,9 @@ def loan_amount_gen():
     loan_amount -= loan_amount % 10000  # Set the last four digits to 0000
     return loan_amount
 
+def credit_score_gen():
+    # Generate a realistic credit score
+    base_score = random.randint(300, 850)  # Generate a base score within a realistic range
+    random_adjustment = random.randint(-100, 100)  # Generate a random adjustment
+    credit_score = max(0, min(1000, base_score + random_adjustment))  # Ensure the score is between 0 and 1000
+    return credit_score
