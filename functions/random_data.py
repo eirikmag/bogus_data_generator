@@ -153,7 +153,7 @@ def credit_score_gen():
     return credit_score
 
 
-def check_loan_approval(credit_score = int, loan_amount = int):
+def check_loan_approval(credit_score, loan_amount):
     # Define the credit score threshold based on the loan amount
     credit_score_threshold = loan_amount // 1000
     fancy_data_science_weighting = random.uniform(-0.3, 0.3)
@@ -198,3 +198,42 @@ def random_ip_gen():
     # Generate a random IP address
     ip = f"{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}.{random.randint(0, 255)}"
     return ip
+
+
+def generate_random_data(num_rows, start_year):
+    random_data = []
+    for _ in range(num_rows):
+        country = country_gen()
+        gender = gender_gen()
+        full_name, first_name, middle_name, last_name = name_gen(gender, country['country_name'])
+        ssn, born_year = ssn_gen(gender, country['country_name'])
+        postal_code = postal_code_gen(country['country_name'])
+        phone_number = phone_number_gen(country['country_name'])
+        requested_loan_amount = requested_loan_amount_gen()
+        credit_score = credit_score_gen()
+        is_approved, fancy_ds_data = check_loan_approval(credit_score, requested_loan_amount)
+        date_of_request = datetime_generator(start_year)
+        product_id, product_name = product_req_gen().values()
+        ip = random_ip_gen()
+        random_data.append(
+            {"full_name": full_name,
+             "first_name": first_name,
+             "middle_name": middle_name,
+             "last_name": last_name,
+             "date_of_request": date_of_request,
+             "country": country,
+             "postal_code": postal_code,
+             "gender": gender,
+             "ssn": ssn,
+             "credit_score": credit_score,
+             "product_id": product_id,
+             "product_name": product_name,
+             "born_year": born_year,
+             "phone_number": phone_number,
+             "ip": ip,
+             "is_approved": is_approved,
+             "fancy_ds_data": fancy_ds_data,
+             "requested_loan_amount": requested_loan_amount
+             })
+    return random_data
+
