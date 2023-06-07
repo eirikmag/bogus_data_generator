@@ -1,9 +1,5 @@
-# Swedish Social Security Number Generator.
-# Author: Eirik Magnussen
-# Date: 2023-05-11
-# 
-# SSN Generator Function (ssn_gen) - Generates a random Swedish Social Security Number.
-# SSN should be in the format: YYMMDD-XXXX (YY = Year, MM = Month, DD = Day, XXXX = Random Number)
+# Bogus data generator functions
+
 import random
 import numpy as np
 from datetime import datetime
@@ -102,7 +98,7 @@ def name_gen(gender, country):
     # Add 50% chance of having a middle name
     if random.random() < 0.5:
         if country == "Sweden":
-            middle_name = random.choice(swe_first_names)["name"]
+            middle_name = random.choice(names.swe_first_names)["name"]
         elif country == "Norway":
             middle_name = random.choice(names.nor_first_names)["name"]
 
@@ -165,7 +161,7 @@ def check_loan_approval(credit_score, loan_amount):
     return accepted, fancy_data_science_weighting
 
 
-def datetime_generator():
+def datetime_generator(year):
     # Generate a random date and time between 2010-01-01 and today's date
     current_date = datetime.now().date()
 
